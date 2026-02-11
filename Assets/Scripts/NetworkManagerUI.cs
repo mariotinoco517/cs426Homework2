@@ -87,7 +87,7 @@ public class NetworkManagerUI : MonoBehaviour
     }
 
     // start client relay
-   public async void StartClientRelay(string joinCode)
+    public async void StartClientRelay(string joinCode)
     {
         JoinAllocation joinAllocation = null;
 
