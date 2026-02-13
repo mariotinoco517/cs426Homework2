@@ -74,7 +74,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 1d75f8b9df7efe24295a97570cec4d13, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -163,8 +163,8 @@ MonoBehaviour:
   rotationSpeed: 135
   distance: 15
   colors:
-  - {r: 0.9622642, g: 0.031772893, b: 0.031772893, a: 0}
-  - {r: 0.10234957, g: 0.8679245, b: 0.25960597, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
   spawnedPrefab: {fileID: 7308158541882560732, guid: 9eb99623bde075940b323c79e170fbc5, type: 3}
   bullet: {fileID: 6820486612740911346, guid: 395194de5a5afec4d9283fe105ddb2f9, type: 3}
   cannon: {fileID: 3886915866738753823}
