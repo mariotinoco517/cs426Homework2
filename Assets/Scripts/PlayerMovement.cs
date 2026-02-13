@@ -4,7 +4,9 @@ using Unity.Netcode;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    public float speed = 2f;
+    public float speed = 10f;
+    public float rotationSpeed = 90f;
+    public float distance = 8f;
 
     public List<Color> colors = new List<Color>();
 
@@ -42,12 +44,22 @@ public class PlayerMovement : NetworkBehaviour
     {
         Vector3 moveDirection = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W)) moveDirection.z += 1f;
-        if (Input.GetKey(KeyCode.S)) moveDirection.z -= 1f;
-        if (Input.GetKey(KeyCode.A)) moveDirection.x -= 1f;
-        if (Input.GetKey(KeyCode.D)) moveDirection.x += 1f;
 
-        transform.position += moveDirection.normalized * speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.position = transform.position + playerCamera.transform.forward * distance * Time.deltaTime;
+        } 
+        if (Input.GetKey(KeyCode.S))        {
+            transform.position = transform.position - playerCamera.transform.forward * distance * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.D))
+            transform.rotation *= Quaternion.Euler(0, rotationSpeed * Time.deltaTime, 0);
+        else if (Input.GetKey(KeyCode.A))
+            transform.rotation *= Quaternion.Euler(0, - rotationSpeed * Time.deltaTime, 0);
+
+        //ONLY FOR TESTING
+        if (Input.GetKey(KeyCode.Space))
+            GetComponent<Rigidbody>().AddForce(Vector3.up * 100f);
     }
 
     public override void OnNetworkSpawn()
