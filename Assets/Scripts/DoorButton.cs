@@ -19,7 +19,7 @@ public class DoorButton : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void MoveAllDoorsServerRpc(ServerRpcParams rpcParams = default)
+    private void MoveAllDoorsServerRpc()
     {
         DoorMovement[] allDoors = FindObjectsByType<DoorMovement>(FindObjectsSortMode.None);
         DoorMovement[] doors = new DoorMovement[allDoors.Length];
