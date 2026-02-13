@@ -47,10 +47,10 @@ public class PlayerMovement : NetworkBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position = transform.position + playerCamera.transform.forward * distance * Time.deltaTime;
+            GetComponent<Rigidbody>().linearVelocity += this.playerCamera.transform.forward * distance * Time.deltaTime;
         } 
         if (Input.GetKey(KeyCode.S))        {
-            transform.position = transform.position - playerCamera.transform.forward * distance * Time.deltaTime;
+            GetComponent<Rigidbody>().linearVelocity -= this.playerCamera.transform.forward * distance * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
             transform.rotation *= Quaternion.Euler(0, rotationSpeed * Time.deltaTime, 0);
