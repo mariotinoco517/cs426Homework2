@@ -6,7 +6,7 @@ public class PlayerMovement : NetworkBehaviour
 {
     public float speed = 10f;
     public float rotationSpeed = 90f;
-    public float distance = 8f;
+    public float distance = 15f;
 
     public List<Color> colors = new List<Color>();
 
@@ -57,6 +57,7 @@ public class PlayerMovement : NetworkBehaviour
             transform.rotation *= Quaternion.Euler(0, rotationSpeed * Time.deltaTime, 0);
         else if (Input.GetKey(KeyCode.A))
             transform.rotation *= Quaternion.Euler(0, - rotationSpeed * Time.deltaTime, 0);
+
 
         //ONLY FOR TESTING
         if (Input.GetKey(KeyCode.Space))
