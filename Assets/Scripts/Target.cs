@@ -15,8 +15,11 @@ public class Target : NetworkBehaviour
         Debug.Log("Collision Detected");
 
         // destroy the colliding object
-        DestroyObjectServerRpc(collision.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
-        MoveAllDoorsServerRpc(); 
+        if (!collision.gameObject.CompareTag("Player"))
+        {
+            DestroyObjectServerRpc(collision.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
+            MoveAllDoorsServerRpc(); 
+        }
     }
 
     // client can not spawn or destroy objects
@@ -37,7 +40,7 @@ public class Target : NetworkBehaviour
     // ----------------------------------------------------
 
     [ServerRpc]
-    private void MoveAllDoorsServerRpc(ServerRpcParams rpcParams = default)
+    private void MoveAllDoorsServerRpc()
     {
         DoorMovement[] allDoors = FindObjectsByType<DoorMovement>(FindObjectsSortMode.None);
         DoorMovement[] doors = new DoorMovement[allDoors.Length];
