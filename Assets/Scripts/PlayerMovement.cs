@@ -44,6 +44,7 @@ public class PlayerMovement : NetworkBehaviour
     {
         Vector3 moveDirection = Vector3.zero;
 
+        Vector3.ClampMagnitude(GetComponent<Rigidbody>().linearVelocity, 30f);
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -59,7 +60,7 @@ public class PlayerMovement : NetworkBehaviour
 
         //ONLY FOR TESTING
         if (Input.GetKey(KeyCode.Space))
-            GetComponent<Rigidbody>().AddForce(Vector3.up * 100f);
+            GetComponent<Rigidbody>().AddForce(Vector3.up * 10f);
     }
 
     public override void OnNetworkSpawn()
