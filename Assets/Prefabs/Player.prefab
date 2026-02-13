@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1473459740
+  GlobalObjectIdHash: 4173017029
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -159,9 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   ShowTopMostFoldoutHeaderGroup: 1
-  speed: 15
-  rotationSpeed: 90
-  distance: 5
+  speed: 40
+  rotationSpeed: 135
+  distance: 15
   colors:
   - {r: 0.9622642, g: 0.031772893, b: 0.031772893, a: 0}
   - {r: 0.10234957, g: 0.8679245, b: 0.25960597, a: 0}

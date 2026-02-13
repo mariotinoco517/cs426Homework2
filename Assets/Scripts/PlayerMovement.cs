@@ -4,7 +4,7 @@ using Unity.Netcode;
 
 public class PlayerMovement : NetworkBehaviour
 {
-    public float speed = 2f;
+    public float speed = 10f;
     public float rotationSpeed = 90f;
     public float distance = 8f;
 
@@ -57,7 +57,9 @@ public class PlayerMovement : NetworkBehaviour
         else if (Input.GetKey(KeyCode.A))
             transform.rotation *= Quaternion.Euler(0, - rotationSpeed * Time.deltaTime, 0);
 
-        
+        //ONLY FOR TESTING
+        if (Input.GetKey(KeyCode.Space))
+            GetComponent<Rigidbody>().AddForce(Vector3.up * 100f);
     }
 
     public override void OnNetworkSpawn()
