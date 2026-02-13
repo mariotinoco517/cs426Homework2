@@ -14,8 +14,9 @@ public class Target : NetworkBehaviour
         // printing if collision is detected on the console
         Debug.Log("Collision Detected");
 
-        // if the collision is detected destroy the object
-        DestroyTargetServerRpc();
+        // destroy the colliding object
+        DestroyObjectServerRpc(collision.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
+        MoveAllDoorsServerRpc(); 
     }
 
     // client can not spawn or destroy objects
@@ -23,11 +24,25 @@ public class Target : NetworkBehaviour
     // we also need to add RequireOwnership = false
     // because we want to destroy the object even if the client is not the owner
     [ServerRpc(RequireOwnership = false)]
-    public void DestroyTargetServerRpc()
+    public void DestroyObjectServerRpc(ulong networkObjectId)
     {
-        //despawn
-        GetComponent<NetworkObject>().Despawn(true);
-        //after collision is detected destroy the gameobject
-        Destroy(gameObject);
+        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(networkObjectId, out NetworkObject netObj))
+        {
+            netObj.Despawn(true);
+        }
+    }
+    
+    // ----------------------------------------------------
+    // Door movement
+    // ----------------------------------------------------
+
+    [ServerRpc]
+    private void MoveAllDoorsServerRpc(ServerRpcParams rpcParams = default)
+    {
+        DoorMovement[] doors = FindObjectsByType<DoorMovement>(FindObjectsSortMode.None);
+        foreach (DoorMovement door in doors)
+        {
+            door.MoveDoor();
+        }
     }
 }
