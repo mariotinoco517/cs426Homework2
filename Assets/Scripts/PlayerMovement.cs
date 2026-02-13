@@ -44,15 +44,13 @@ public class PlayerMovement : NetworkBehaviour
     {
         Vector3 moveDirection = Vector3.zero;
 
-        
-
 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position = transform.position + Camera.main.transform.forward * distance * Time.deltaTime;
+            transform.position = transform.position + playerCamera.transform.forward * distance * Time.deltaTime;
         } 
         if (Input.GetKey(KeyCode.S))        {
-            transform.position = transform.position - Camera.main.transform.forward * distance * Time.deltaTime;
+            transform.position = transform.position - playerCamera.transform.forward * distance * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
             transform.rotation *= Quaternion.Euler(0, rotationSpeed * Time.deltaTime, 0);
