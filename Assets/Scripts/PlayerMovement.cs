@@ -43,10 +43,14 @@ public class PlayerMovement : NetworkBehaviour
     {
         Vector3 moveDirection = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W)) moveDirection.z += 1f;
-        if (Input.GetKey(KeyCode.S)) moveDirection.z -= 1f;
-        if (Input.GetKey(KeyCode.A)) moveDirection.x -= 1f;
-        if (Input.GetKey(KeyCode.D)) moveDirection.x += 1f;
+        if (Input.GetKey(KeyCode.W))
+            GetComponent<Rigidbody>().linearVelocity += this.transform.forward * speed * Time.deltaTime;
+        else if (Input.GetKey(KeyCode.S))
+            GetComponent<Rigidbody>().linearVelocity -= this.transform.forward * speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.D))
+            transform.rotation *= Quaternion.Euler(0, rotationSpeed * Time.deltaTime, 0);
+        else if (Input.GetKey(KeyCode.A))
+            transform.rotation *= Quaternion.Euler(0, - rotationSpeed * Time.deltaTime, 0);
 
         transform.position += moveDirection.normalized * speed * Time.deltaTime;
     }
