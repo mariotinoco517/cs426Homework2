@@ -6,7 +6,7 @@ using Unity.Netcode;
 
 public class Target : NetworkBehaviour
 {
-
+    public int doorLink = 0;
     //this method is called whenever a collision is detected
     private void OnCollisionEnter(Collision collision)
     {
@@ -39,7 +39,17 @@ public class Target : NetworkBehaviour
     [ServerRpc]
     private void MoveAllDoorsServerRpc(ServerRpcParams rpcParams = default)
     {
-        DoorMovement[] doors = FindObjectsByType<DoorMovement>(FindObjectsSortMode.None);
+        DoorMovement[] allDoors = FindObjectsByType<DoorMovement>(FindObjectsSortMode.None);
+        DoorMovement[] doors = new DoorMovement[allDoors.Length];
+        int index = 0;
+        foreach (DoorMovement door in allDoors)
+        {
+            if (door.doorGroup == doorLink) {
+                doors[index] = door;
+                index++;
+            }
+        }
+
         foreach (DoorMovement door in doors)
         {
             door.MoveDoor();

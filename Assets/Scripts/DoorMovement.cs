@@ -8,6 +8,8 @@ public class DoorMovement : NetworkBehaviour
     // Update is called once per frame
 
     public bool doorMoved = false;
+    public int doorGroup = 0;
+
 
     void Update()
     {
