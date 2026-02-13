@@ -44,8 +44,6 @@ public class PlayerMovement : NetworkBehaviour
     {
         Vector3 moveDirection = Vector3.zero;
 
-        Vector3.ClampMagnitude(GetComponent<Rigidbody>().linearVelocity, 30f);
-
         if (Input.GetKey(KeyCode.W))
         {
             GetComponent<Rigidbody>().linearVelocity += this.playerCamera.transform.forward * distance * Time.deltaTime;

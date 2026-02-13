@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BMaze
       objectReference: {fileID: 0}
+    - target: {fileID: 445661300166935967, guid: c38e468222c6336489c5fe894e71106b, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 18063284
+      objectReference: {fileID: 0}
     - target: {fileID: 4249303302119743067, guid: c38e468222c6336489c5fe894e71106b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -61.8
