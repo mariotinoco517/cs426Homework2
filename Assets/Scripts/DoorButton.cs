@@ -28,6 +28,10 @@ public class DoorButton : NetworkBehaviour
         {
             if (door.doorGroup == doorLink)
             {
+                if (doorLink == -1 || doorLink == -2)
+                {
+                    Destroy(door);
+                }
                 doors[index] = door;
                 index++;
             }
