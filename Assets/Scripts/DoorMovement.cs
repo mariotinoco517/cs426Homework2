@@ -19,11 +19,11 @@ public class DoorMovement : NetworkBehaviour
     // this method will move the door up by 2 units
     public void MoveDoor() {
         if (!doorMoved) {
-            transform.position += new Vector3(0, 2, 0);
+            transform.position += new Vector3(0, 10, 0);
             doorMoved = true;
         }
         else {
-            transform.position -= new Vector3(0, 2, 0);
+            transform.position -= new Vector3(0, 10, 0);
             doorMoved = false;
         }
     }
