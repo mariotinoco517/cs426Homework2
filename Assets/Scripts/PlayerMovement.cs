@@ -58,8 +58,8 @@ public class PlayerMovement : NetworkBehaviour
 
 
         //ONLY FOR TESTING
-        if (Input.GetKey(KeyCode.Space))
-            GetComponent<Rigidbody>().AddForce(Vector3.up * 100f);
+        // if (Input.GetKey(KeyCode.Space))
+        //     GetComponent<Rigidbody>().AddForce(Vector3.up * 100f);
     }
 
     public override void OnNetworkSpawn()
