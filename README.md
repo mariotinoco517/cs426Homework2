@@ -1,6 +1,6 @@
 # cs426Homework2
 
-Names: Mario Tinoco, Ben Gonzalez
+Names: Mario Tinoco, Ben Gonzalez, Rafael Maatouk
 FE's
 Players:
 The game requires 2 players. Both players have to navigate their own maze while interacting with the opposite maze
