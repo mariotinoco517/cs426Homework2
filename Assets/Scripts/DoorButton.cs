@@ -26,15 +26,16 @@ public class DoorButton : NetworkBehaviour
         int index = 0;
         foreach (DoorMovement door in allDoors)
         {
-            if (door.doorGroup == doorLink) {
+            if (door.doorGroup == doorLink)
+            {
                 doors[index] = door;
                 index++;
             }
         }
 
-        foreach (DoorMovement door in doors)
+        for (int i = 0; i < index; i++)
         {
-            door.MoveDoor();
+            doors[i].MoveDoor();
         }
     }
 }
