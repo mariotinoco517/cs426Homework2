@@ -6,7 +6,7 @@ using Unity.Netcode;
 
 public class Target : NetworkBehaviour
 {
-    public int doorLink = 0;
+
     //this method is called whenever a collision is detected
     private void OnCollisionEnter(Collision collision)
     {
@@ -14,12 +14,8 @@ public class Target : NetworkBehaviour
         // printing if collision is detected on the console
         Debug.Log("Collision Detected");
 
-        // destroy the colliding object
-        if (!collision.gameObject.CompareTag("Player"))
-        {
-            DestroyObjectServerRpc(collision.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
-            MoveAllDoorsServerRpc(); 
-        }
+        // if the collision is detected destroy the object
+        DestroyTargetServerRpc();
     }
 
     // client can not spawn or destroy objects
@@ -27,35 +23,11 @@ public class Target : NetworkBehaviour
     // we also need to add RequireOwnership = false
     // because we want to destroy the object even if the client is not the owner
     [ServerRpc(RequireOwnership = false)]
-    public void DestroyObjectServerRpc(ulong networkObjectId)
+    public void DestroyTargetServerRpc()
     {
-        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(networkObjectId, out NetworkObject netObj))
-        {
-            netObj.Despawn(true);
-        }
-    }
-    
-    // ----------------------------------------------------
-    // Door movement
-    // ----------------------------------------------------
-
-    [ServerRpc]
-    private void MoveAllDoorsServerRpc()
-    {
-        DoorMovement[] allDoors = FindObjectsByType<DoorMovement>(FindObjectsSortMode.None);
-        DoorMovement[] doors = new DoorMovement[allDoors.Length];
-        int index = 0;
-        foreach (DoorMovement door in allDoors)
-        {
-            if (door.doorGroup == doorLink) {
-                doors[index] = door;
-                index++;
-            }
-        }
-
-        foreach (DoorMovement door in doors)
-        {
-            door.MoveDoor();
-        }
+        //despawn
+        GetComponent<NetworkObject>().Despawn(true);
+        //after collision is detected destroy the gameobject
+        Destroy(gameObject);
     }
 }
