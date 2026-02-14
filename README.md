@@ -3,10 +3,10 @@
 Names: Mario Tinoco,
 FE's
 Players:
-The game requires 2 players. One player traverses a maze while the other guides them from an elevated location
+The game requires 2 players. Both players have to navigate their own maze while interacting with the opposite maze
 Follows the cooperative play interaction pattern. Both players work together to solve puzzles
 Objectives:
-The game is an exploration serious game. While the players solve puzzles they find "fun facts" displaying facts about computer architecture
+The game is an exploration serious game. While the players solve puzzles they find "fun facts" displaying facts about computer architecture that they need to know to succesfully pull of a heist
 Procedures:
 Both player can do the following
 W: Foward
@@ -14,8 +14,9 @@ S: Backward
 A: Move camera left
 D: Move camera right
 Press buttons by moving over buttons
+shoot by pressing right mouse button
 Rules:
-Rules are simple, to get out of maze the players must solve all puzzles to open the exit.
+Rules are simple, to get pull of a heist the players must find hints in the maze to solve the quiz questions
 Resources:
 N/A, players only have to solve puzzles with no worry about resources
 Conflict:
@@ -25,7 +26,7 @@ Players being in different rooms creates a dynamic where one player will guide t
 Outcome:
 Outcome is for the players to learn about computer architecture to be able to solve puzzles and travel through a maze
 
-We followed the game theme by making the player a thief who gets into houses by traversing through computers. While the player is traversing to the other computer they
+We followed the game theme by making the player a thief who have to pull of a data heist. While the players are traversing the maze together they
 learn about computer architecture through in game "billboards" displaying facts.
 
-The serious objective is to learn about computer architecture. Specifically, the players will learn about memory/data management.
+The serious objective is to learn about computer architecture. Specifically, the players will learn about memory/data and clock speeds.
