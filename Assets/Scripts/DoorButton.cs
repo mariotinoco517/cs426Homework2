@@ -9,37 +9,83 @@ public class DoorButton : NetworkBehaviour
     public int doorLink = 0;
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Button is stepped on");
-        MoveAllDoorsServerRpc();
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        Debug.Log("Button is no longer stepped on");
-        MoveAllDoorsServerRpc();
-    }
-
-    [ServerRpc]
-    private void MoveAllDoorsServerRpc()
-    {
-        DoorMovement[] allDoors = FindObjectsByType<DoorMovement>(FindObjectsSortMode.None);
-        DoorMovement[] doors = new DoorMovement[allDoors.Length];
-        int index = 0;
-        foreach (DoorMovement door in allDoors)
+        if (IsServer)
         {
-            if (door.doorGroup == doorLink)
-            {
-                if (doorLink == -1 || doorLink == -2)
-                {
-                    Destroy(door);
-                }
-                doors[index] = door;
-                index++;
-            }
+            MoveAllDoors();
         }
-
-        for (int i = 0; i < index; i++)
+        else
         {
-            doors[i].MoveDoor();
+             Debug.Log("Button is stepped on nonServer");
+            MoveAllDoors();
+        }
+       
+    }
+    // private void OnCollisionExit(Collision collision)
+    // {
+    //     Debug.Log("Button is no longer stepped on");
+    //     MoveAllDoorsServerRpc();
+    // }
+
+    private void MoveAllDoors()
+{
+    DoorMovement[] allDoors = FindObjectsByType<DoorMovement>(FindObjectsSortMode.None);
+
+    foreach (DoorMovement door in allDoors)
+    {
+        if (door.doorGroup == doorLink)
+        {
+            door.ToggleDoor();
         }
     }
+}
+
+
+    // private void MoveAllDoors()
+    // {
+    //     DoorMovement[] allDoors = FindObjectsByType<DoorMovement>(FindObjectsSortMode.None);
+    //     DoorMovement[] doors = new DoorMovement[allDoors.Length];
+    //     int index = 0;
+    //     foreach (DoorMovement door in allDoors)
+    //     {
+    //         if (door.doorGroup == doorLink)
+    //         {
+    //             if (doorLink == -1 || doorLink == -2)
+    //             {
+    //                 Destroy(door);
+    //             }
+    //             doors[index] = door;
+    //             index++;
+    //         }
+    //     }
+
+    //     for (int i = 0; i < index; i++)
+    //     {
+    //         doors[i].MoveDoor();
+    //     }
+    // }
+
+    // [ServerRpc(RequireOwnership = false)]
+    // private void MoveAllDoorsServerRpc()
+    // {   
+    //     DoorMovement[] allDoors = FindObjectsByType<DoorMovement>(FindObjectsSortMode.None);
+    //     DoorMovement[] doors = new DoorMovement[allDoors.Length];
+    //     int index = 0;
+    //     foreach (DoorMovement door in allDoors)
+    //     {
+    //         if (door.doorGroup == doorLink)
+    //         {
+    //             if (doorLink == -1 || doorLink == -2)
+    //             {
+    //                 Destroy(door);
+    //             }
+    //             doors[index] = door;
+    //             index++;
+    //         }
+    //     }
+
+    //     for (int i = 0; i < index; i++)
+    //     {
+    //         doors[i].MoveDoor();
+    //     }
+    // }
 }
